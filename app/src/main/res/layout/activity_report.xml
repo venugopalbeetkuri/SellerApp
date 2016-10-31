@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow android:gravity="center" android:background="#0000e6" android:layout_span="2">
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="Points screen"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+    </TableRow>
+
+    <TableRow android:background="#C8C8C8">
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="Points given: " />
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text=""
+            android:id="@+id/pointsGiven" />
+    </TableRow>
+
+    <TableRow android:background="#FFFFFF">
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="Total sale: " />
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text=""
+            android:id="@+id/totalSale" />
+
+    </TableRow>
+
+    <TableRow android:background="#C8C8C8">
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="Discount given: " />
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text=""
+            android:id="@+id/totalDiscount" />
+
+    </TableRow>
+
+</TableLayout>

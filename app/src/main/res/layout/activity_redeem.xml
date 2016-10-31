@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow android:gravity="center" android:background="#0000e6" android:layout_span="2">
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="Redeem points"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+    </TableRow>
+
+    <TableRow android:background="#C8C8C8">
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="Redeem points: " />
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text=""
+            android:id="@+id/redeemPoints" />
+    </TableRow>
+
+    <TableRow android:background="#FFFFFF">
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="Discount amount: " />
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text=""
+            android:id="@+id/discountAmount" />
+    </TableRow>
+
+    <TableRow android:background="#C8C8C8">
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text="Bill amount: " />
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:padding="3dip"
+            android:text=""
+            android:id="@+id/billAmount" />
+
+    </TableRow>
+
+    <TableRow android:layout_marginTop="50px">
+
+        <Button
+            android:layout_marginLeft="50px"
+            android:background="#F00000"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:text="Cancel"
+            android:id="@+id/redeemCancelButton"/>
+
+        <Button
+            android:background="#33CC33"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="50px"
+            android:gravity="center"
+            android:text="Accept"
+            android:id="@+id/redeemButton"/>
+
+    </TableRow>
+
+</TableLayout>
