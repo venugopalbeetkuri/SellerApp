@@ -26,7 +26,7 @@ public class DataServerAsyncTask extends AsyncTask<Void, Void, String> {
     private TextView statusText;
     private WifiDirectReceive activity;
 
-    static ServerSocket serverSocket = null;
+    // static ServerSocket serverSocket = null;
 
     /**
      * @param statusText
@@ -41,12 +41,12 @@ public class DataServerAsyncTask extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... params) {
         try {
 
-             if(null == serverSocket) {
+             //if(null == serverSocket) {
 
                 Log.i("bizzmark", "data doing back");
-                serverSocket = new ServerSocket(8888);
+             ServerSocket serverSocket = new ServerSocket(8888);
                 serverSocket.setReuseAddress(true);
-             }
+             //}
 
 
             Log.i("bizzmark", "Opening socket on 8888.");
@@ -70,21 +70,23 @@ public class DataServerAsyncTask extends AsyncTask<Void, Void, String> {
                 th.printStackTrace();
             }*/
 
-
+            serverSocket = null;
 
             return str;
 
         } catch (Throwable e) {
 
             Log.e("bizzmark", e.toString());
-            try {
+           /* try {
                 serverSocket.close();
             }catch (Exception ex){
                 ex.printStackTrace();
             }
-            serverSocket = null;
+            serverSocket = null;*/
             return null;
+
         }
+
     }
 
     /*

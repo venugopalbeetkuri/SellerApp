@@ -119,6 +119,20 @@ public class WifiDirectReceive extends AppCompatActivity {
                 mAdapter = new WifiAdapter(peersshow);
                 mRecyclerView.setAdapter(mAdapter);
                 mRecyclerView.setLayoutManager(new LinearLayoutManager(WifiDirectReceive.this));
+
+                mAdapter.SetOnItemClickListener(new WifiAdapter.OnItemClickListener() {
+
+                    @Override
+                    public void OnItemClick(View view, int position) {
+
+                        createConnect(peersshow.get(position).get("address"), peersshow.get(position).get("name"));
+                    }
+
+                    @Override
+                    public void OnItemLongClick(View view, int position) {
+
+                    }
+                });
             }
         };
 
@@ -147,7 +161,7 @@ public class WifiDirectReceive extends AppCompatActivity {
         mReceiver = new WifiDirectBroadcastReceiver(mManager, mChannel, this, mPeerListListerner, mInfoListener);
     }
 
-    private void createConnect(String address, final String name) {
+    private void createConnect(String address, String name) {
 
         //WifiP2pDevice device;
         WifiP2pConfig config = new WifiP2pConfig();
@@ -255,6 +269,6 @@ public class WifiDirectReceive extends AppCompatActivity {
         Log.i("xyz", "Reset receiver.");
         unregisterReceiver(mReceiver);
         registerReceiver(mReceiver, mFilter);
-        // discoverPeers();
+        discoverPeers();
     }
 }
