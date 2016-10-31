@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.R;
 import com.example.db.EarnBO;
 import com.example.db.MongoDB;
 import com.example.db.RedeemBO;

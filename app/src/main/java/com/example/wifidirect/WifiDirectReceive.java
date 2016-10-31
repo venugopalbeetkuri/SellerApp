@@ -27,7 +27,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import com.example.sellerapp.R;
+import com.example.R;
 import com.example.wifidirect.Adapter.WifiAdapter;
 import com.example.wifidirect.BroadcastReceiver.WifiDirectBroadcastReceiver;
 import com.example.wifidirect.Task.DataServerAsyncTask;

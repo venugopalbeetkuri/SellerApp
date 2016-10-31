@@ -16,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.R;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;

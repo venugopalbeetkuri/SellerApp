@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sellerapp">
+    package="com.example">
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -20,7 +20,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".wifidirect.WifiDirectReceive">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,11 +28,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".RedeemPoints" />
+        <activity android:name=".sellerapp.RedeemPoints" />
 
-        <activity android:name=".EarnPoints" />
+        <activity android:name=".sellerapp.EarnPoints" />
 
-        <activity android:name=".ReportPoints" />
+        <activity android:name=".sellerapp.ReportPoints" />
     </application>
 
 </manifest>

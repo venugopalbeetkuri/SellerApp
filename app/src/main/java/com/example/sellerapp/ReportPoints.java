@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.widget.TextView;
 
+import com.example.R;
 import com.example.db.ReportBO;
 
 
