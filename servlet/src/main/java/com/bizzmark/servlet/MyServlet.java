@@ -6,10 +6,6 @@
 
 package com.bizzmark.servlet;
 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 
 import org.bson.Document;
 
@@ -19,33 +15,39 @@ import javax.servlet.http.*;
 
 public class MyServlet extends HttpServlet {
 
+    // Write a message to the database
+    //FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //DatabaseReference myRef = database.getReference("message");
+
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 
-        /*resp.setContentType("text/plain");
-        resp.getWriter().println("Please use the form to POST to this url");*/
-        doPost(req, resp);
+        resp.setContentType("text/plain");
+        resp.getWriter().println("Please use the form to POST to this url");
+        // doPost(req, resp);
     }
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
 
-        /*String name = req.getParameter("name");
+        String name = req.getParameter("name");
         resp.setContentType("text/plain");
         if (name == null) {
 
             resp.getWriter().println("Please enter a name");
-        }*/
+        } else {
+            resp.getWriter().println("Hi: " + name);
+        }
 
 
-        boolean success = connectToMongoDB();
+       /* boolean success = connectToMongoDB();
         if (success) {
             resp.getWriter().println("Updation to server success.");
         } else {
             resp.getWriter().println("Updation to server failed.");
-        }
+        }*/
 
     }
 
@@ -53,7 +55,7 @@ public class MyServlet extends HttpServlet {
     private boolean connectToMongoDB() {
         try {
 
-            MongoClientURI mongoURI = new MongoClientURI("mongodb://venugopalbeetkuri:shreshta143@ds015770.mlab.com:15770/pointshub");
+           /* MongoClientURI mongoURI = new MongoClientURI("mongodb://venugopalbeetkuri:shreshta143@ds015770.mlab.com:15770/pointshub");
             MongoClient mClient = new MongoClient(mongoURI);
 
             MongoDatabase db = mClient.getDatabase(mongoURI.getDatabase());
@@ -66,7 +68,7 @@ public class MyServlet extends HttpServlet {
             document.put("billAmount", "12000");
             document.put("earned", "120");
 
-            collection.insertOne(document);
+            collection.insertOne(document);*/
             return true;
         } catch (Exception ex) {
             ex.printStackTrace();
