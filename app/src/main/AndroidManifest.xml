@@ -26,7 +26,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".wifidirect.WifiDirectReceive">
+        <activity android:name=".Main2Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,6 +36,7 @@
         <activity android:name=".sellerapp.RedeemPoints" />
         <activity android:name=".sellerapp.EarnPoints" />
         <activity android:name=".sellerapp.ReportPoints" />
+
     </application>
 
 </manifest>
