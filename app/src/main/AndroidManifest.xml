@@ -36,7 +36,6 @@
         <activity android:name=".sellerapp.RedeemPoints" />
         <activity android:name=".sellerapp.EarnPoints" />
         <activity android:name=".sellerapp.ReportPoints" />
-
     </application>
 
 </manifest>

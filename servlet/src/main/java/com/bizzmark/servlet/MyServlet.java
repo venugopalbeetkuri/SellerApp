@@ -6,81 +6,29 @@
 
 package com.bizzmark.servlet;
 
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.*;
 
 public class MyServlet extends HttpServlet {
 
-    // Write a message to the database
-     // FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //DatabaseReference myRef = database.getReference("message");
+    private final Logger logger = Logger.getLogger(MyServlet.class.getName());
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
+        logger.log(Level.WARNING, "In doGet method.");
 
-        /*resp.setContentType("text/plain");
-        resp.getWriter().println("Please use the form to POST to this url");*/
-
-        /*FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("server/saving-data/fireblog");
-
-
-
-
-       // Log.info("Got cron message, constructing email.");
-
-        //Create a new Firebase instance and subscribe on child events.
-        Firebase firebase = new Firebase("[firebase ref]");
-        firebase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Build the email message contents using every field from Firebase.
-                final StringBuilder newItemMessage = new StringBuilder();
-                newItemMessage.append("This should arrive very closely after changing the data");
-
-
-                //Now Send the email
-                Properties props = new Properties();
-                Session session = Session.getDefaultInstance(props, null);
-                try {
-                    Message msg = new MimeMessage(session);
-                    //Make sure you substitute your project-id in the email From field
-                    msg.setFrom(new InternetAddress("anything@[app-engine].appspotmail.com",
-                            "Todo Nagger"));
-                    msg.addRecipient(Message.RecipientType.TO,
-                            new InternetAddress("myEmail@gmail.com", "Recipient"));
-                    msg.setSubject("Feast Email Test");
-                    msg.setText(newItemMessage.toString());
-                    Transport.send(msg);
-                } catch (MessagingException | UnsupportedEncodingException e) {
-                    Log.warning(e.getMessage());
-                }
-            }
-
-            public void onCancelled(FirebaseError firebaseError) {
-            }
-        });*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-    @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+        JSONObject jsonObject = getJSonObject();
+        String jString = jsonObject.toString();
 
         String name = req.getParameter("name");
         resp.setContentType("text/plain");
@@ -92,41 +40,40 @@ public class MyServlet extends HttpServlet {
             resp.getWriter().println("Hi: " + name);
         }
 
-
-       /* boolean success = connectToMongoDB();
-        if (success) {
-            resp.getWriter().println("Updation to server success.");
-        } else {
-            resp.getWriter().println("Updation to server failed.");
-        }*/
+        resp.getWriter().println(jString);
 
     }
 
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws IOException {
 
-    private boolean connectToMongoDBAndCommit() {
+        logger.log(Level.INFO, "In doPost method.");
+        doGet(req, resp);
+    }
+
+
+    private JSONObject getJSonObject() {
+
+        JSONObject jsonObject = null;
         try {
 
-           /* MongoClientURI mongoURI = new MongoClientURI("mongodb://venugopalbeetkuri:shreshta143@ds015770.mlab.com:15770/pointshub");
-            MongoClient mClient = new MongoClient(mongoURI);
+            URL url = new URL("https://smartpoints-8b016.firebaseio.com/client.json");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            StringBuffer json = new StringBuffer();
+            String line;
 
-            MongoDatabase db = mClient.getDatabase(mongoURI.getDatabase());
+            while ((line = reader.readLine()) != null) {
+                json.append(line);
+            }
+            reader.close();
 
-            MongoCollection collection = db.getCollection("client");
+            jsonObject = new JSONObject(json.toString());
 
-            Document document = new Document();
-            document.put("userId", "testUser");
-            document.put("storeId", "testStore");
-            document.put("billAmount", "12000");
-            document.put("earned", "120");
-
-            collection.insertOne(document);*/
-            return true;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-        return false;
+        return jsonObject;
     }
-
 
 }

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "904776850245",
+    "firebase_url": "https://smartpoints-8b016.firebaseio.com",
+    "project_id": "smartpoints-8b016",
+    "storage_bucket": "smartpoints-8b016.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904776850245:android:0361d91e71522078",
+        "android_client_info": {
+          "package_name": "com.bizzmark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904776850245-ftn23k09te4v8lmduvigev5gvc083gs3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3AlX73i4GWducMnzeM1QGXplADNrigBY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

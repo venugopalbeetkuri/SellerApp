@@ -6,7 +6,13 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.google.appengine:gradle-appengine-plugin:1.9.34'
+
+        classpath 'com.google.appengine:gradle-appengine-plugin:1.9.46'
+
+       // classpath 'com.google.gms:google-services:3.0.0'
+
+// classpath 'com.bizzmark'
+
     }
 }
 
@@ -17,17 +23,31 @@ repositories {
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'appengine'
+//apply plugin: 'com.google.gms.google-services'
+
+//apply plugin:  'com.android.tools.build:gradle'
+
 
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
 
 dependencies {
-    appengineSdk 'com.google.appengine:appengine-java-sdk:1.9.34'
+    appengineSdk 'com.google.appengine:appengine-java-sdk:1.9.46'
     compile 'javax.servlet:servlet-api:2.5'
-    // compile 'com.google.firebase:firebase-database:9.8.0'
     // compile 'com.google.firebase:firebase-database:9.8.0'
     // compile name: 'mongo-java-driver-3.2.0'
     //  compile 'com.google.appengine:gcloud-maven-plugin:2.0.9'
+    //compile 'com.google.firebase:firebase-core:9.8.0'
+    // compile 'com.google.firebase:firebase-server-sdk:9.8.0'
+    // compile 'com.google.firebase:firebase-admin:4.0.0'
+    // compile 'com.firebase:firebase-client-android:2.4.0'
+    //compile 'com.google.firebase:firebase-core:9.2.1'
+    //compile 'com.google.firebase:firebase-database:9.2.1'
+    // compile 'com.google.appengine:appengine-java-sdk:1.9.46'
+     compile 'com.google.firebase:firebase-server-sdk:3.0.3'
+    // compile 'com.google.firebase:firebase-crash:3.0.3'
+    compile 'com.google.gms:google-services:3.0.0'
+    // compile 'com.google.firebase:firebase-admin:4.0.0'
 }
 
 appengine {
@@ -37,4 +57,6 @@ appengine {
     }
 }
 
-//apply plugin: 'com.google.gms.google-services'
+// Add to the bottom of the file
+//// Add to the bottom of the file
+// apply plugin: 'com.google.gms.google-services'
