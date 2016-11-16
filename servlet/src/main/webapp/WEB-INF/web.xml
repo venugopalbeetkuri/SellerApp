@@ -1,14 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee">
+
+
+
     <servlet>
         <servlet-name>MyServlet</servlet-name>
         <servlet-class>com.bizzmark.servlet.MyServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>MyServlet</servlet-name>
-        <url-pattern>/hello</url-pattern>
+        <url-pattern>/Save</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>GCMNotification</servlet-name>
+        <servlet-class>com.bizzmark.servlet.GCMNotification</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GCMNotification</servlet-name>
+        <url-pattern>/GCMNotification</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>GCMHttp</servlet-name>
+        <servlet-class>com.bizzmark.servlet.GCMHttp</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GCMHttp</servlet-name>
+        <url-pattern>/GCMHttp</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
+
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+
+
 </web-app>

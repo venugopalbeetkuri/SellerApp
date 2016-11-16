@@ -6,19 +6,40 @@
 
 package com.bizzmark.servlet;
 
+import com.bizzmark.bo.Points;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.repackaged.com.google.api.client.util.IOUtils;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
+import java.net.URLDecoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.servlet.http.*;
 
 public class MyServlet extends HttpServlet {
+
+    Gson gson = null;
+
+
+
 
     private final Logger logger = Logger.getLogger(MyServlet.class.getName());
 
@@ -27,20 +48,19 @@ public class MyServlet extends HttpServlet {
 
         logger.log(Level.WARNING, "In doGet method.");
 
-        JSONObject jsonObject = getJSonObject();
-        String jString = jsonObject.toString();
+        String jsonString = req.getParameter("jsonString");
 
-        String name = req.getParameter("name");
+        jsonString = URLDecoder.decode(jsonString, "UTF-8");
+        boolean success = saveDataToDB(jsonString);
+
         resp.setContentType("text/plain");
-        if (name == null) {
+        if (success) {
 
-            resp.getWriter().println("Please enter a name");
+            resp.getWriter().println("Data: " + jsonString + "-saved successfully.");
         } else {
 
-            resp.getWriter().println("Hi: " + name);
+            resp.getWriter().println("Failed to save. Data: " + jsonString);
         }
-
-        resp.getWriter().println(jString);
 
     }
 
@@ -52,6 +72,78 @@ public class MyServlet extends HttpServlet {
         doGet(req, resp);
     }
 
+
+    private void doCalculations() {
+        try {
+            // Get a reference to our posts
+            // final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReferenceFromUrl("https://smartpoints-8b016.firebaseio.com//points");
+
+// Attach a listener to read the data at our posts reference
+            ref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    // Post post = dataSnapshot.getValue(Post.class);
+                    System.out.println("onDataChange");
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    System.out.println("The read failed: " + databaseError.getCode());
+                }
+            });
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    private boolean saveDataToDB(String jsonData) {
+        boolean success = false;
+        try {
+
+            Points points = getPoints(jsonData);
+            if (null == points) {
+                return success;
+            }
+
+            DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+
+            Entity pointsEntity = new Entity("points");
+
+            pointsEntity.setProperty("userId", points.getUserId());
+            pointsEntity.setProperty("storeId", points.getStoreId());
+            pointsEntity.setProperty("discountAmount", points.getDiscountAmount());
+            pointsEntity.setProperty("redeemed", points.getRedeemed());
+            pointsEntity.setProperty("earned", points.getEarned());
+            pointsEntity.setProperty("billAmount", points.getBillAmount());
+
+            datastore.put(pointsEntity);
+
+            success = true;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return success;
+    }
+
+    private Points getPoints(String jsonData) {
+
+        Points points = null;
+        try {
+
+            if (null == gson) {
+                gson = new Gson();
+            }
+
+            points = gson.fromJson(jsonData, Points.class);
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+        }
+        return points;
+    }
 
     private JSONObject getJSonObject() {
 
@@ -75,5 +167,8 @@ public class MyServlet extends HttpServlet {
         }
         return jsonObject;
     }
+
+
+
 
 }
