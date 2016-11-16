@@ -23,6 +23,7 @@ public class GCMHttp extends HttpServlet {
 
     private final Logger logger = Logger.getLogger(GCMNotification.class.getName());
 
+    // API key will be found in your firebase console --> your project --> settings --> cloud messaging --> server key.
     private String API_KEY = "AIzaSyD447hNzkrGgpwTSjRjrVk4KliJn1hDPKQ";
 
     public GCMHttp() {
@@ -39,10 +40,15 @@ public class GCMHttp extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        send("f0L3URcfWRblzbsa0eG8BP9LgG23", "Hi From GCMHTTP Servlet.");
+        // Token you will get from
+        // String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        String responseStr = send("eUMdddv6KWM:APA91bFmvwnNxb9FLLoR9MCgtDU0agIZ7rqvxlrE2xDzKI1DCkF5y8M2rzlthbV13Qw9kIUAvNYw6_NB1dXk-ZuNMsWAvmjxIEZHGEjAVEWXAnIkJ3KG4XGUgW0lOo8BE70XdexpDDjj", "Hi From GCMHTTP Servlet.");
+
+        response.getWriter().println("Response: " + responseStr);
     }
 
-    private void send(String to, String msg){
+    private String send(String to, String msg) {
+        String response = "";
         try {
             // Prepare JSON containing the GCM message content. What to send and where to send.
             JSONObject jGcmData = new JSONObject();
@@ -68,15 +74,16 @@ public class GCMHttp extends HttpServlet {
 
             // Read GCM response.
             InputStream inputStream = conn.getInputStream();
-            String resp = getStringFromInputStream(inputStream);
-            System.out.println(resp);
+            response = getStringFromInputStream(inputStream);
+            System.out.println(response);
             System.out.println("Check your device/emulator for notification or logcat for " + "confirmation of the receipt of the GCM message.");
         } catch (IOException e) {
 
-            System.out.println("Unable to send GCM message.");
-            System.out.println("Please ensure that API_KEY has been replaced by the server " + "API key, and that the device's registration token is correct (if specified).");
+            //System.out.println("Unable to send GCM message.");
+            // System.out.println("Please ensure that API_KEY has been replaced by the server " + "API key, and that the device's registration token is correct (if specified).");
             e.printStackTrace();
         }
+        return response;
     }
 
     private static String getStringFromInputStream(InputStream is) {
